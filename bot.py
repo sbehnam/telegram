@@ -2,6 +2,7 @@ from flask import Flask, request
 import telegram
 from telegram.ext import Dispatcher, MessageHandler, Filters
 
+
 # تنظیمات توکن بات
 TOKEN = "8078556164:AAGvRk4pfutvyuhndvbgAxaEcyehOtpUy_o"
 bot = telegram.Bot(token=TOKEN)
@@ -16,6 +17,9 @@ def webhook():
         update = telegram.Update.de_json(request.get_json(force=True), bot)
         dispatcher.process_update(update)
         return 'ok'
+def setup_webhook():
+    webhook_url = 'https://telegram-ok3w.onrender.com/webhook'
+    bot.set_webhook(url=webhook_url)
 
 # تنظیم dispatcher و فیلترها
 dispatcher = Dispatcher(bot, None)
